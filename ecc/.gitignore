@@ -13,6 +13,12 @@
 # Ignore .fetch files in case you like to edit your project deps locally.
 /.fetch
 
+<<<<<<< HEAD
+=======
+# The directory that contains IntelliJ's project files
+/.idea/
+
+>>>>>>> Removidos archivos del IDE y agregados el generador de c´odigo y el parser
 # If the VM crashes, it generates a dump, let's ignore it too.
 erl_crash.dump
 
