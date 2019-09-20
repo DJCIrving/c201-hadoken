@@ -1,22 +1,22 @@
 defmodule CodeGenerator do
   @moduledoc false
-  def generateCode(ast) do
-    salida = postOrder(ast)
+  def generate_code(ast) do
+    salida = post_order(ast)
     salida
   end
 
-  def postOrder(ast) do
+  def post_order(ast) do
     case node do
       nil ->
         nil
       node ->
-        fragment = postOrder(node.leftNode)
-        postOrder(node.rightNode)
-        generateFragment(node.id, fragment, node.value)
+        fragment = post_order(node.left_node)
+        post_order(node.right_node)
+        generate_fragment(node.id, fragment, node.value)
     end
   end
 
-  def generateFragment(:program, fragment, _) do
+  def generate_fragment(:program, fragment, _) do
     """
 
         .section    __TEXT,__text,regular,pure_instructions
@@ -25,7 +25,7 @@ defmodule CodeGenerator do
     fragment
   end
 
-  def generateFragment(:function, fragment, :main) do
+  def generate_fragment(:function, fragment, :main) do
     """
 
         .globl  _main     ## --Begin fuction main
@@ -34,7 +34,7 @@ defmodule CodeGenerator do
     fragment
   end
 
-  def generateFragment(:return, fragment, _) do
+  def generate_fragment(:return, fragment, _) do
     """
 
         movl #{fragment}, %eax
@@ -42,7 +42,7 @@ defmodule CodeGenerator do
     """
   end
 
-  def generateFragment(:constant, fragment, value) do
+  def generate_fragment(:constant, fragment, value) do
     "$#{value}"
   end
 
