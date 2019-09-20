@@ -48,8 +48,8 @@ defmodule Lexer do
           get_constant(rest,linea)
       end
 	if rest != "" do
-		auxiliar_token={rest,linea}
-		remaining_tokens=lex_raw_tokens(auxiliar_token)
+		auxiliary_token={rest,linea}
+		remaining_tokens=lex_raw_tokens(auxiliary_token)
 		[token | remaining_tokens]
 	else
 		remaining_tokens=lex_raw_tokens(rest)

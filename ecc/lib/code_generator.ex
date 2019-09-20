@@ -1,8 +1,8 @@
 defmodule CodeGenerator do
   @moduledoc false
   def generate_code(ast) do
-    salida = post_order(ast)
-    salida
+    output = post_order(ast)
+    output
   end
 
   def post_order(ast) do
