@@ -95,10 +95,10 @@ defmodule Parser do
       end
   end
 
-  def parse_expression(lista_tkn, cExp) do
-    [{next_token,num_line} | rest]=lista_tkn
+  def parse_expression(token_list, cExp) do
+    [{next_token,num_line} | rest]=token_list
 
-      term = parse_term(lista_tkn,1)
+      term = parse_term(token_list,1)
       {expression_node,remaining_list}=term
       [{next_tok,num_line}|rest]=remaining_list
       case next_tok do
@@ -119,9 +119,9 @@ defmodule Parser do
     end
   end
 
-  def parse_term(ast_tree, cTerm) do
-    [{next_token,num_line} | rest]=ast_tree
-          factor = parse_factor(ast_tree)
+  def parse_term(ast, cTerm) do
+    [{next_token,num_line} | rest]=ast
+          factor = parse_factor(ast)
           {expression_node,remaining_list}=factor
           [{sig_tok,num_line}|rest]=remaining_list
           case sig_tok do
@@ -142,8 +142,8 @@ defmodule Parser do
           end
   end
 
-  def parse_factor(arbol_AST) do
-      [{next_token,num_line} | rest]=arbol_AST
+  def parse_factor(ast) do
+      [{next_token,num_line} | rest]=ast
       case next_token do
         :open_paren->
           if next_token==:open_paren do
