@@ -1,6 +1,6 @@
 # Ecc
 
-**TODO: Add description**
+**For Hadoken team: Please follow the convention and read the changes.**
 
 ## Installation
 
