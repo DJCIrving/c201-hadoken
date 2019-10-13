@@ -7,3 +7,16 @@ defmodule Parser do
     case function do
       {{:error,error_message,linea,problema}, _rest} ->
         {:error, error_message, linea,problema}
+  def parse_program(token_list) do
+    function = parse_function(token_list,0)
+    case function do
+      {{:error,error_message,linea,problema}, _rest} ->
+        {:error, error_message, linea,problema}
+          {function_node, rest} ->
+        if rest == [] do
+          %AST{node_name: :program, left_node: function_node}
+        else
+          {:error, "Error: hay mas elementos al final de la funcion",0,"mas elementos"}
+        end
+    end
+  end
