@@ -1,0 +1,9 @@
+defmodule Parser do
+  @moduledoc """
+    <program> ::= <function>
+     <function> ::= "int" <id> "(" ")" "{" <statement> "}"
+    def parse_program(token_list) do
+    function = parse_function(token_list,0)
+    case function do
+      {{:error,error_message,linea,problema}, _rest} ->
+        {:error, error_message, linea,problema}
