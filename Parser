@@ -31,4 +31,25 @@ def parse_function([{next_token,numline} | rest],contador) do
   
   def parse_function([{next_token,numline} | rest],contador) do
     if rest != [] do
-      case contador do   //es para poder ver los erroees segun laline hay crea una funcion
+      case contador do   
+      0->    // error para int
+          if next_token == :int_keyword do
+            contador=contador+1
+            parse_function(rest,contador)
+          else
+            {{:error, "Error #1",numline,next_token},rest}
+          end
+        1-> // error para  main
+          if next_token == :main_keyword do
+            contador=contador+1
+            parse_function(rest,contador)
+          else
+            {{:error, "Error, #2",numline,next_token},rest}
+          end
+        2-> // error para las siguinete  next_token} para caso futuro
+          if next_token == :open_paren do
+            contador=contador+1
+            parse_function(rest,contador)
+          else
+            {{:error, "Error, #3",numline,next_token},rest}
+          end
