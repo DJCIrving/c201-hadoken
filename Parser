@@ -27,3 +27,8 @@ def parse_function([{next_token,numline} | rest],contador) do
           else
             {{:error, "Error #1",numline,next_token},rest}
           end
+          
+  
+  def parse_function([{next_token,numline} | rest],contador) do
+    if rest != [] do
+      case contador do   //es para poder ver los erroees segun laline hay crea una funcion
